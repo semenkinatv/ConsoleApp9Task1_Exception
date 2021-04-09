@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp9Task1_Exception", "ConsoleApp9Task1_Exception\ConsoleApp9Task1_Exception.csproj", "{A3F4717F-446D-4EA8-BC95-3E070BDE5FFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3F4717F-446D-4EA8-BC95-3E070BDE5FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F4717F-446D-4EA8-BC95-3E070BDE5FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F4717F-446D-4EA8-BC95-3E070BDE5FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F4717F-446D-4EA8-BC95-3E070BDE5FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {043C55DC-58F2-4565-828C-6FDF9E69390E}
+	EndGlobalSection
+EndGlobal
