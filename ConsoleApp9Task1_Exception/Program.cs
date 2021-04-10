@@ -6,7 +6,7 @@ namespace TryCatchPractices
     {
         public MyException()
         {
-            Console.WriteLine("Сработало моё исключение");
+            Console.WriteLine("Сработал мой тип исключений");
         }
 
         public MyException(string message)
@@ -16,15 +16,13 @@ namespace TryCatchPractices
 
     class Program
     {
+        static string[] listfio = new string[] { "Яковлев", "Сидоров", "Алдонин", "Железнов", "Токарев" };
+
         static void Main(string[] args)
         {
-            MyException myexception = new MyException();
-            ArgumentOutOfRangeException argumentOutOfRangeException = new ArgumentOutOfRangeException();
-            RankException rankException = new RankException();
-            DivideByZeroException divideByZeroException = new DivideByZeroException();
-            OverflowException overflowException = new OverflowException();
+            Console.WriteLine("Задание 1");
 
-            Exception[] except = new Exception[] { myexception, argumentOutOfRangeException, rankException, divideByZeroException, overflowException };
+            Exception[] except = new Exception[] { new MyException(), new ArgumentOutOfRangeException(), new RankException(), new DivideByZeroException(), new OverflowException() };
 
             for (int i = 0; i < except.Length; i++)
             {
@@ -65,8 +63,90 @@ namespace TryCatchPractices
                 }
 
             }
-            
+            Console.WriteLine();
+            Console.WriteLine("Задание 2. Исходный список фамилий:");
 
+            foreach (string fio in listfio)
+            { Console.WriteLine(fio); }
+
+            NumberReader numberReader = new NumberReader();
+            numberReader.NumberEnterEvent += SortList;
+            while (true)
+            {
+                try
+                {
+                    numberReader.Read();
+                }
+                catch (MyException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+        }
+        static string[] Sort(string[] fio, int param)
+        {
+            string temp;
+            for (int i = 0; i < fio.Length; i++)
+            {
+                for (int j = i + 1; j < fio.Length; j++)
+                {
+                    int MyInt = fio[i].CompareTo(fio[j]);
+
+                    if (param == 1 && MyInt > 0)
+                    { //по возрастанию
+                        temp = fio[i];
+                        fio[i] = fio[j];
+                        fio[j] = temp;
+                    }
+                    else if (param == 2 && MyInt < 0)
+                    { //по убыванию
+                        temp = fio[i];
+                        fio[i] = fio[j];
+                        fio[j] = temp;
+                    }
+                }
+            }
+            return fio;
+        }
+
+        static void SortList(int number)
+        {
+            Console.WriteLine();
+            switch (number)
+            {
+                case 1:
+                    Console.WriteLine("Сортировка по возрастанию:");
+                    break;
+                case 2:
+                    Console.WriteLine("Сортировка по убыванию:");
+                    break;
+            }
+            Sort(listfio, number);
+
+            foreach (string fio in listfio)
+            { Console.WriteLine(fio); }
+        }
+    }
+    class NumberReader
+    {
+        public delegate void NumberEnterDelegat(int number);
+        public event NumberEnterDelegat NumberEnterEvent;
+
+        public void Read()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Введите 1 для сортировки А-Я, либо 2 для сортировки Я-А");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            if (num != 1 && num != 2) throw new MyException();
+
+            NumberEntered(num);
+
+        }
+        protected virtual void NumberEntered(int number)
+        {
+            NumberEnterEvent?.Invoke(number);
         }
     }
 }
