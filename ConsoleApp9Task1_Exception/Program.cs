@@ -12,7 +12,7 @@ namespace TryCatchPractices
         public MyException(string message)
             : base(message)
         { }
-    }
+    } 
 
     class Program
     {
